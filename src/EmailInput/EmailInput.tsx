@@ -48,6 +48,14 @@ export const EmailInput: React.FC = () => {
         setInputText("");
       }
     }
+    if (
+      e.key === "Backspace" &&
+      inputText.length === 0 &&
+      addresses.length > 0
+    ) {
+      e.preventDefault();
+      setAddresses(addresses.slice(0, addresses.length - 1));
+    }
   };
 
   const handleRemove = (index: number) => {
