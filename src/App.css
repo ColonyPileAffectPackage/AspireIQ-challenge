@@ -10,6 +10,16 @@
   justify-content: center;
 }
 
+.App-demo-container {
+  position: relative;
+}
+
 .App-background {
   width: 680px;
+}
+
+.App-input-container {
+  position: absolute;
+  top: 46px;
+  left: 69px;
 }
