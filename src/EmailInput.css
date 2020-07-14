@@ -4,16 +4,6 @@
   flex-direction: row;
 }
 
-.EmailInput-address-list {
-  line-height: 30px;
-  font-size: 14px;
-}
-
-.EmailInput-address-list span {
-  margin-right: 5px;
-  font-weight: bold;
-}
-
 .EmailInput-input {
   font-size: 14px;
   border: none;
@@ -21,4 +11,70 @@
   line-height: 30px;
   height: 28px;
   flex-grow: 1;
+  margin-left: 12px;
+}
+
+.EmailInput-address-list {
+  line-height: 26px;
+  font-size: 14px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.EmailInput-address {
+  margin-right: 5px;
+  cursor: default;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.EmailInput-address:hover,
+.EmailInput-address-invalid {
+  padding: 0px 0px 0px 8px;
+  border-radius: 5px;
+}
+
+.EmailInput-address:hover {
+  background-color: #eeeeee;
+}
+
+.EmailInput-address-invalid,
+.EmailInput-address-invalid:hover {
+  background-color: #ffaaaa;
+}
+
+.EmailInput-address-span {
+  font-weight: bold;
+  user-select: none;
+}
+
+.EmailInput-address-error {
+  background-color: #ff6666;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 12px;
+  color: white;
+  margin: 0px 8px;
+  font-size: 9px;
+}
+
+.EmailInput-address:hover .EmailInput-address-error {
+  margin-right: 0px;
+}
+
+.EmailInput-remove-button {
+  display: none;
+
+  padding: 0px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.EmailInput-address:hover .EmailInput-remove-button {
+  display: initial;
 }

@@ -10,6 +10,29 @@ const makeUniqueIdFactory = () => {
   };
 };
 
+const validEmailRegex = /^[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+
+const EmailAddress: React.FC<{
+  address: string;
+  onRemove: () => void;
+}> = ({ address, onRemove }) => {
+  const isValid = validEmailRegex.test(address);
+
+  return (
+    <div
+      className={`EmailInput-address${
+        isValid ? "" : " EmailInput-address-invalid"
+      }`}
+    >
+      <span className="EmailInput-address-span">{address}</span>
+      {!isValid && <div className="EmailInput-address-error">!</div>}
+      <div className="EmailInput-remove-button" onClick={onRemove}>
+        ✕
+      </div>
+    </div>
+  );
+};
+
 export const EmailInput: React.FC = () => {
   const getUniqueId = useRef(makeUniqueIdFactory()).current;
   const [inputText, setInputText] = useState("");
@@ -20,16 +43,30 @@ export const EmailInput: React.FC = () => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" || e.key === "Enter") {
       e.preventDefault();
-      setAddresses([...addresses, { address: inputText, id: getUniqueId() }]);
-      setInputText("");
+      if (inputText.length > 0) {
+        setAddresses([...addresses, { address: inputText, id: getUniqueId() }]);
+        setInputText("");
+      }
     }
+  };
+
+  const handleRemove = (index: number) => {
+    setAddresses([
+      ...addresses.slice(0, index),
+      ...addresses.slice(index + 1, addresses.length)
+    ]);
+    // TODO: focus input?
   };
 
   return (
     <div className="EmailInput-container">
       <div className="EmailInput-address-list">
-        {addresses.map(({ address, id }) => (
-          <span key={id}>{address}</span>
+        {addresses.map(({ address, id }, index) => (
+          <EmailAddress
+            key={id}
+            address={address}
+            onRemove={() => handleRemove(index)}
+          />
         ))}
       </div>
       <input
