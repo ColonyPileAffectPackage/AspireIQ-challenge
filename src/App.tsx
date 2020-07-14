@@ -19,6 +19,7 @@ function App() {
         <div className="App-input-container">
           <EmailInput addresses={addresses} setAddresses={setAddresses} />
         </div>
+        *Note: rest of email message composer is just a screenshot :)
       </div>
     </div>
   );
