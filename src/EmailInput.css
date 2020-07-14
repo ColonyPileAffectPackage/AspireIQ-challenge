@@ -1,7 +1,24 @@
-.EmailInput {
+.EmailInput-container {
+  width: 580px;
+  display: flex;
+  flex-direction: row;
+}
+
+.EmailInput-address-list {
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.EmailInput-address-list span {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.EmailInput-input {
+  font-size: 14px;
   border: none;
   outline: none;
-  font-size: 14px;
+  line-height: 30px;
   height: 28px;
-  width: 580px;
+  flex-grow: 1;
 }
