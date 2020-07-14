@@ -33,12 +33,17 @@ const EmailAddress: React.FC<{
   );
 };
 
-export const EmailInput: React.FC = () => {
+interface EmailInputProps {
+  addresses: Array<{ address: string; id: number }>;
+  setAddresses: (addresses: Array<{ address: string; id: number }>) => void;
+}
+
+export const EmailInput: React.FC<EmailInputProps> = ({
+  addresses,
+  setAddresses
+}) => {
   const getUniqueId = useRef(makeUniqueIdFactory()).current;
   const [inputText, setInputText] = useState("");
-  const [addresses, setAddresses] = useState<
-    Array<{ address: string; id: number }>
-  >([]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab" || e.key === "Enter") {
@@ -47,8 +52,7 @@ export const EmailInput: React.FC = () => {
         setAddresses([...addresses, { address: inputText, id: getUniqueId() }]);
         setInputText("");
       }
-    }
-    if (
+    } else if (
       e.key === "Backspace" &&
       inputText.length === 0 &&
       addresses.length > 0
@@ -63,7 +67,6 @@ export const EmailInput: React.FC = () => {
       ...addresses.slice(0, index),
       ...addresses.slice(index + 1, addresses.length)
     ]);
-    // TODO: focus input?
   };
 
   return (
