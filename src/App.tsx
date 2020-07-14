@@ -1,7 +1,7 @@
 import React from "react";
 import figmaBackground from "./figma-background.png";
 import "./App.css";
-import { EmailInput } from "./EmailInput";
+import EmailInput from "./EmailInput";
 
 function App() {
   return (
